@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../style/HeroSection.css';
 import Lottie from 'lottie-react';
 import animationData from '../assets/animation2.json';
@@ -6,6 +7,8 @@ import animationData2 from '../assets/animation3.json';
 import animationData3 from '../assets/Animation4.json'
 
 function HeroSection() {
+    const navigate = useNavigate();
+
     const lottieRef = useRef();
     const lottieRef2 = useRef();
     const lottieRef3 = useRef();
@@ -25,7 +28,7 @@ return (
                     <h1>Generate Professional Contracts in Minutes</h1>
                     <p>Simplify your legal paperwork with customizable templates and secure e-signatures.</p>
                     <div className="cta">
-                        <button className="cta-btn">Sign Up for Free</button>
+                        <button className="cta-btn" onClick={() => navigate('/signup')}>Sign Up for Free</button>
                     </div>
                 </div>
                 <div className="hero-animation">
@@ -60,7 +63,7 @@ return (
 
                         <div className="step reveal-on-scroll">
                             <h4>✏️ Customize the Details</h4>
-                            <p>Fill in the required fields, personalize the terms, and add specific details for your contract.</p>
+                            <p>Personalize the terms and add specific details for your contract.</p>
                         </div>
 
                         <div className="step reveal-on-scroll">
