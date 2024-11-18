@@ -10,9 +10,22 @@ function SignUp() {
     const [success, setSuccess] = useState(false);
     const navigate = useNavigate();
 
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
+
+        if (!emailRegex.test(email)) {
+            setError('Invalid email');
+            return;
+        }
+
+        if (!passwordRegex.test(password)) {
+            setError('Invalid password');
+            return;
+        }
 
         if (password !== confirmPassword) {
             setError('Passwords do not match');
