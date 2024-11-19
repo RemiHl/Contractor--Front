@@ -1,0 +1,129 @@
+.dashboard {
+    display: flex;
+}
+
+.side-menu {
+    height: 130vh;
+    width: 250px;
+    background-color: #20274a;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.side-menu ul, ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-menu li {
+    cursor: pointer;
+    padding: 10px 0;
+    margin: 20px;
+    transition: background-color 0.3s;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 18px;
+}
+
+.side-menu li:hover {
+    background-color: #4CAF50;
+    border-radius: 6px;
+}
+
+.dashboard-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.dashboard-content h2 {
+    margin-bottom: 20px;
+}
+
+.dashboard-content h4 {
+    font-size: 30px;
+}
+
+.view-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.view-btn:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+.template-link {
+    color: #4CAF50;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 6px;
+    background-color: rgb(33, 33, 77);
+    padding: 10px 20px;
+}
+
+.template-link:hover {
+    color: #3ca041;
+    background-color: rgb(22, 22, 80);
+}
+
+
+.facture-container {
+    width: 210mm;
+    height: 297mm;
+    margin: 20px auto;
+    background: white;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20mm;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.facture-header,
+.facture-footer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.facture-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.facture-details {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.facture-details th,
+.facture-details td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.facture-details th {
+    background: #f4f4f4;
+    font-weight: bold;
+}
+
+.facture-total {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
