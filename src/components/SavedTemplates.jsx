@@ -41,7 +41,6 @@ const SavedTemplates = () => {
 
     return (
         <div className="dashboard">
-            {/* Ajout du SideMenu ici */}
             <SideMenu />
             <div className="dashboard-content">
                 <h2>Saved documents</h2>
