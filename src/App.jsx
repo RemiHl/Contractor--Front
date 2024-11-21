@@ -8,6 +8,8 @@ import LoginPage from './components/Login';
 import SignUp from './components/SignUp';
 import Dashboard from './components/Dashboard';
 import TemplateDetail from './components/TemplateDetail';
+import SavedTemplateDetail from './components/SavedTemplateDetail';
+import SavedTemplates from './components/SavedTemplates';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/template/:id" element={<TemplateDetail />} />
+          <Route path="/dashboard/saved-templates" element={<SavedTemplates />} />
+          <Route path="/dashboard/saved-template/:id" element={<SavedTemplateDetail />} />
         </Routes>
       </main>
       <Footer />

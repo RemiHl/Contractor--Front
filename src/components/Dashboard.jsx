@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/Dashboard.css';
+import SideMenu from './SideMenu';
 
 const Dashboard = () => {
     const [view, setView] = useState('templates');
@@ -37,6 +38,7 @@ const Dashboard = () => {
     const fetchSavedTemplates = async () => {
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/saved-templates`, {
+                method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
                 },
@@ -53,18 +55,12 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard">
-            <div className="side-menu">
-                <ul>
-                    <li onClick={() => setView('templates')}>Templates</li>
-                    <li onClick={() => setView('sign-document')}>Sign Document</li>
-                    <li onClick={() => setView('saved-templates')}>Saved Templates</li>
-                </ul>
-            </div>
+            <SideMenu />
             <div className="dashboard-content">
                 <h2>Dashboard</h2>
                 {view === 'templates' && (
                     <>
-                        <h3>Liste des templates</h3>
+                        <h3>Templates List</h3>
                         {error && <p className="error">{error}</p>}
                         <ul>
                             {templates.map(template => (
@@ -92,7 +88,7 @@ const Dashboard = () => {
                         {error && <p className="error">{error}</p>}
                         <ul>
                             {savedTemplates.map(savedTemplate => (
-                                <li key={savedTemplate.id}>
+                                <li key={savedTemplate.id}>{savedTemplate.name}
                                     <h4
                                         onClick={() => navigate(`/dashboard/saved-template/${savedTemplate.id}`)}
                                         className="template-link"

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import "../style/TemplateDetail.css";
+import SideMenu from "./SideMenu";
 
 const TemplateDetail = () => {
     const { id } = useParams();
-    const navigate = useNavigate();
     const [template, setTemplate] = useState(null);
     const [error, setError] = useState(null);
+    const [message, setMessage] = useState(null);
+    const [modifiedContent, setModifiedContent] = useState("");
 
     useEffect(() => {
         const fetchTemplate = async () => {
@@ -20,6 +23,7 @@ const TemplateDetail = () => {
                 }
                 const data = await response.json();
                 setTemplate(data);
+                setModifiedContent(data.content);
             } catch (err) {
                 setError(err.message);
             }
@@ -27,6 +31,30 @@ const TemplateDetail = () => {
 
         fetchTemplate();
     }, [id]);
+
+    const handleSave = async () => {
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/saved-template`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+                },
+                body: JSON.stringify({
+                    templateId: template.id,
+                    content: modifiedContent,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to save the template");
+            }
+
+            setMessage("Template saved successfully!");
+        } catch (err) {
+            setError(err.message);
+        }
+    };
 
     if (error) {
         return <p className="error">{error}</p>;
@@ -38,19 +66,17 @@ const TemplateDetail = () => {
 
     return (
         <div className="dashboard">
-            <div className="side-menu">
-                <ul>
-                    <li onClick={() => navigate("/dashboard")}>Templates</li>
-                    <li onClick={() => alert("Signer un document (bientôt dispo)")}>Sign Document</li>
-                    <li onClick={() => navigate("/dashboard/saved-templates")}>Saved Templates</li>
-                </ul>
-            </div>
-
+            <SideMenu />
             <div className="dashboard-content">
                 <div
                     className="template-detail"
-                    dangerouslySetInnerHTML={{ __html: template.content }}
+                    contentEditable
+                    suppressContentEditableWarning
+                    onInput={(e) => setModifiedContent(e.currentTarget.innerHTML)}
+                    dangerouslySetInnerHTML={{ __html: modifiedContent }}
                 ></div>
+                <button onClick={handleSave}>Save Template</button>
+                {message && <p className="success">{message}</p>}
             </div>
         </div>
     );

@@ -1,0 +1,12 @@
+.dashboard-content button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #29bc2e;
+    color: white;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.dashboard-content button:hover {
+    background-color: #2dd42d;
+}

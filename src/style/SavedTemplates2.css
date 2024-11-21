@@ -1,0 +1,10 @@
+.template-link {
+    color: #4CAF50;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 6px;
+    background-color: rgb(33, 33, 77);
+    padding: 20px 40px;
+    font-size: 28px;
+}
